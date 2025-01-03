@@ -19,7 +19,7 @@ class GeneralHeader extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          tile("Next Appointment", Icons.calendar_month, "21-9-2024"),
+          tile("Next Appointment", Icons.calendar_month, "21-9-2024", false),
           VerticalDivider(
             color: Colors.black, // Color of the divider
             thickness: 1, // Thickness of the divider
@@ -27,20 +27,20 @@ class GeneralHeader extends StatelessWidget {
             indent: 20, // Top padding
             endIndent: 20, // Bottom padding
           ),
-          tile("Next Appointment", Icons.calendar_month, "21-9-2024"),
+          tile("Next Appointment", Icons.calendar_month, "₹500", true),
           IntrinsicHeight(
             child: VerticalDivider(
               color: Colors.grey.shade400,
             ),
           ),
-          tile("Next Appointment", Icons.calendar_month, "21-9-2024"),
+          tile("Next Appointment", Icons.calendar_month, "21-9-2024", false),
         ],
       ),
     );
   }
 
   //********************* */
-  Widget tile(String header, IconData icon, String bottom) {
+  Widget tile(String header, IconData icon, String bottom, bool isMoney) {
     return Column(
       children: [
         Text(
@@ -50,16 +50,15 @@ class GeneralHeader extends StatelessWidget {
         SizedBox(
           height: 12,
         ),
-        Icon(
-          icon,
-          size: 20,
-        ),
+        Image.asset(
+            isMoney ? 'assets/images/money.png' : 'assets/images/calender.png'),
         SizedBox(
           height: 12,
         ),
         Text(
           bottom,
-          style: TextStyle(fontSize: 11, color: colors.mainColor),
+          style: TextStyle(
+              fontSize: 11, color: isMoney ? Colors.orange : colors.mainColor),
         ),
       ],
     );
